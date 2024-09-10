@@ -1,0 +1,41 @@
+import java.util.Scanner;
+
+public class Promedio {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Ingrese el número de materias: ");
+        int materias = scanner.nextInt();
+
+        double[] calificaciones = new double[materias];
+        int[] creditos = new int[materias];
+
+        datos(calificaciones, creditos, materias, scanner);
+
+        double promedio = calcularPromedio(calificaciones, creditos, materias);
+
+        System.out.printf("El promedio ponderado es: %.2f", promedio);
+    }
+
+    public static void datos(double[] calificaciones, int[] creditos, int materias, Scanner scanner) {
+        for (int i = 0; i < materias; i++) {
+            System.out.print("Ingrese la calificación de la materia " + (i + 1) + ": ");
+            calificaciones[i] = scanner.nextDouble();
+            System.out.print("Ingrese los créditos de la materia " + (i + 1) + ": ");
+            creditos[i] = scanner.nextInt();
+        }
+    }
+
+    public static double calcularPromedio(double[] calificaciones, int[] creditos, int materias) {
+        double suma = 0;
+        int total = 0;
+
+        for (int i = 0; i < materias; i++) {
+            suma += calificaciones[i] * creditos[i];
+            total += creditos[i];
+        }
+
+        return suma / total;
+    }
+}
